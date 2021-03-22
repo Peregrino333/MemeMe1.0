@@ -21,7 +21,13 @@
                                 <rect key="frame" x="0.0" y="764" width="414" height="49"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <items>
-                                    <barButtonItem title="Item" id="P5Y-Uz-Caf"/>
+                                    <barButtonItem title="Album" id="DcT-my-Tjp">
+                                        <connections>
+                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="0Ip-d2-yQH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lSp-nQ-gET"/>
+                                    <barButtonItem title="Canera" image="camera" catalog="system" id="Lp8-Ue-mgv"/>
                                 </items>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
@@ -36,11 +42,13 @@
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8p9-em-EmI" userLabel="topTextField">
                                 <rect key="frame" x="5" y="105" width="404" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cwv-3w-ec8" userLabel="bottomTextField">
                                 <rect key="frame" x="5" y="713" width="404" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -70,6 +78,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="cwv-3w-ec8" id="ZmH-YY-p5o"/>
+                        <outlet property="imagePickerView" destination="Yaj-SE-dOP" id="J1O-Am-cab"/>
                         <outlet property="topTextField" destination="8p9-em-EmI" id="qvI-2V-gbU"/>
                     </connections>
                 </viewController>
@@ -78,6 +87,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" catalog="system" width="128" height="94"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

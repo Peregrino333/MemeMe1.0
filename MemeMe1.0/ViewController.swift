@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var bottomTextField: UITextField!
     
-
+    @IBOutlet weak var imagePickerView: UIImageView!
+    
+    
+//actions
+    @IBAction func pickAnImage(_ sender: Any) {
+                
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.mediaTypes = ["public.image", "public.movie"]
+                
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ pickerController: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                    
+        if let image = info[.originalImage] as? UIImage {
+                imagePickerView.image = image
+        }
+            
+        //save()
+            
+        dismiss(animated: true, completion: nil)
+        }
+        
+    func imagePickerControllerDidCancel(_ pickerController: UIImagePickerController)
+        {
+            dismiss(animated: true, completion: nil)
+        }
+    
 }
 

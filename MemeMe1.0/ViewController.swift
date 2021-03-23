@@ -24,6 +24,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.defaultTextAttributes = memeTextAttributes
         
+        //validating for simulator and disable camera button
+        #if targetEnvironment(simulator)
+        cameraButton.isEnabled = false
+        #endif
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var imagePickerView: UIImageView!
     
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
 //actions
     @IBAction func pickAnImage(_ sender: Any) {

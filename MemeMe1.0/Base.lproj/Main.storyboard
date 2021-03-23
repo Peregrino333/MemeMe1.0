@@ -81,6 +81,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="cwv-3w-ec8" id="ZmH-YY-p5o"/>
+                        <outlet property="cameraButton" destination="Lp8-Ue-mgv" id="NY4-py-icj"/>
                         <outlet property="imagePickerView" destination="Yaj-SE-dOP" id="J1O-Am-cab"/>
                         <outlet property="topTextField" destination="8p9-em-EmI" id="qvI-2V-gbU"/>
                     </connections>

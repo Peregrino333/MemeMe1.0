@@ -56,7 +56,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOL-Qd-AAf">
                                 <rect key="frame" x="12" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="shareButton" image="square.and.arrow.up" catalog="system" id="lxX-R6-vVz"/>
+                                    <barButtonItem title="shareButton" image="square.and.arrow.up" catalog="system" id="lxX-R6-vVz">
+                                        <connections>
+                                            <action selector="shareButton:" destination="BYZ-38-t0r" id="agg-iB-x1O"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="eRb-pZ-a3g"/>
                                     <barButtonItem title="Cancel" id="CVK-Eo-yEQ"/>
                                 </items>
@@ -88,6 +92,7 @@
                         <outlet property="bottomTextField" destination="cwv-3w-ec8" id="ZmH-YY-p5o"/>
                         <outlet property="cameraButton" destination="Lp8-Ue-mgv" id="VFl-7D-esg"/>
                         <outlet property="imagePickerView" destination="Yaj-SE-dOP" id="J1O-Am-cab"/>
+                        <outlet property="shareButton" destination="lxX-R6-vVz" id="jgr-Cw-Fdy"/>
                         <outlet property="topTextField" destination="8p9-em-EmI" id="qvI-2V-gbU"/>
                     </connections>
                 </viewController>

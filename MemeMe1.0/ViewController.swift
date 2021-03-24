@@ -8,7 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
-    
+ 
+struct Meme {
+    var topText : String
+    var bottomText : String
+    var originalImage : UIImage
+    var memedImage : UIImage
+    }
     
 //variables
     var activeTextField = UITextField()
@@ -32,7 +38,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        shareButton.isEnabled = false
     }
     
 //Meme attributes
@@ -52,6 +61,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    
+    
 //actions
     @IBAction func pickAnImage(_ sender: Any) {
                 
@@ -61,6 +73,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.mediaTypes = ["public.image", "public.movie"]                
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
+        shareButton.isEnabled = true
     }
     
     
@@ -69,6 +82,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
+        shareButton.isEnabled = true
     }
     
     
@@ -77,9 +91,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = info[.originalImage] as? UIImage {
                 imagePickerView.image = image
         }
-            
-        //save()
-            
+        save()
         dismiss(animated: true, completion: nil)
         }
         
@@ -143,8 +155,58 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
             return keyboardSize.cgRectValue.height
         }
+    
+    //meme object section
+        
+    func save() {
+            // Create the meme
+            let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+        }
+        
+    func generateMemedImage() -> UIImage {
+            
+        //hide toolbar and navbar
+        self.navigationController?.toolbar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
+            
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+            
+        //show toolbar and navbar
+        self.navigationController?.toolbar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
 
+        return memedImage
+    }
     
     
+    @IBAction func shareButton(_ sender: Any) {
+        print("Did I hit Share")
+        print("Sharing Meme")
+        let image = generateMemedImage()
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        present(controller, animated: true, completion: nil)
+                
+        //save the meme
+        //Completion handler
+        controller.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed:
+        Bool, arrayReturnedItems: [Any]?, error: Error?) in
+            if completed {
+                self.save()
+                print("saved")
+                return
+            } else {
+                print("cancel")
+            }
+            if let shareError = error {
+                print("error while sharing: \(shareError.localizedDescription)")
+            }
+        }
+    }
+    
+ 
 }
 

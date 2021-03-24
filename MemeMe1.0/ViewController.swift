@@ -30,6 +30,10 @@ struct Meme {
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.defaultTextAttributes = memeTextAttributes
         
+        //initial text field values
+        bottomTextField.text = "BOTTOM"
+        topTextField.text = "TOP"
+        
         //validating for simulator and disable camera button
         #if targetEnvironment(simulator)
         cameraButton.isEnabled = false
@@ -45,11 +49,13 @@ struct Meme {
     }
     
 //Meme attributes
+
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth:  -2.0]
+        NSAttributedString.Key.strokeWidth:  -2.0,
+                                               ]
     
 //outlets
     

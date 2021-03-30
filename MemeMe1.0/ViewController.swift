@@ -213,6 +213,16 @@ struct Meme {
         }
     }
     
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        //initial text field values
+        bottomTextField.text = "BOTTOM"
+        topTextField.text = "TOP"
+        
+        imagePickerView.image = nil
+        
+    }
+    
  
 }
 

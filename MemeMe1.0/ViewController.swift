@@ -72,23 +72,24 @@ struct Meme {
     
 //actions
     @IBAction func pickAnImage(_ sender: Any) {
-                
+        shareButton.isEnabled = true
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.mediaTypes = ["public.image", "public.movie"]                
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
-        shareButton.isEnabled = true
     }
     
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        shareButton.isEnabled = true
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
-        shareButton.isEnabled = true
+        
     }
     
     
@@ -97,7 +98,7 @@ struct Meme {
         if let image = info[.originalImage] as? UIImage {
                 imagePickerView.image = image
         }
-        save()
+        //save()
         dismiss(animated: true, completion: nil)
         }
         
@@ -108,8 +109,6 @@ struct Meme {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
             textField.text = ""
-            
-            print("I am on text field")
             
             // we don't need to move the view up
             self.activeTextField = textField
@@ -190,8 +189,6 @@ struct Meme {
     
     
     @IBAction func shareButton(_ sender: Any) {
-        print("Did I hit Share")
-        print("Sharing Meme")
         let image = generateMemedImage()
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(controller, animated: true, completion: nil)
@@ -213,7 +210,7 @@ struct Meme {
         }
     }
     
-    
+    //clicking cancel button
     @IBAction func cancelButton(_ sender: Any) {
         //initial text field values
         bottomTextField.text = "BOTTOM"

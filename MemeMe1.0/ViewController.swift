@@ -72,23 +72,26 @@ struct Meme {
     
 //actions
     @IBAction func pickAnImage(_ sender: Any) {
-        shareButton.isEnabled = true
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.mediaTypes = ["public.image", "public.movie"]                
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
+        
     }
     
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        shareButton.isEnabled = true
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        imagePicker.mediaTypes = ["public.image", "public.movie"]
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
+        
         
     }
     
@@ -97,8 +100,11 @@ struct Meme {
                     
         if let image = info[.originalImage] as? UIImage {
                 imagePickerView.image = image
+                shareButton.isEnabled = true
         }
+        
         //save()
+        
         dismiss(animated: true, completion: nil)
         }
         

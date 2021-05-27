@@ -39,13 +39,17 @@ struct Meme {
         cameraButton.isEnabled = false
         #endif
         
+        shareButton.isEnabled = false
+        
+        //restarting
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
-        shareButton.isEnabled = false
+        
     }
     
 //Meme attributes

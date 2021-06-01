@@ -4,6 +4,8 @@
 <dict>
 	<key>NSCameraUsageDescription</key>
 	<string>User is allowed to launch Camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ALLOW</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>

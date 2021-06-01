@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
  
  
 //variables
@@ -23,6 +23,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //setting text atttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.defaultTextAttributes = memeTextAttributes
+        
+        //centering text fields
+        bottomTextField.textAlignment = .center
+        topTextField.textAlignment = .center
         
         //initial text field values
         bottomTextField.text = "BOTTOM"

@@ -7,16 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
  
-struct Meme {
-    var topText : String
-    var bottomText : String
-    var originalImage : UIImage
-    var memedImage : UIImage
-    }
-    
-    
+ 
 //variables
     var activeTextField = UITextField()
 

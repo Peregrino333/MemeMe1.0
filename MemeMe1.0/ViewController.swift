@@ -12,6 +12,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
  
 //variables
     var activeTextField = UITextField()
+    
+    //setting up text fields
+    
+    func prepareTextField(textField: UITextField, defaultText: String ) {
+        textField.text = defaultText
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +35,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.textAlignment = .center
         topTextField.textAlignment = .center
         
-        //initial text field values
-        bottomTextField.text = "BOTTOM"
-        topTextField.text = "TOP"
+        prepareTextField(textField: bottomTextField, defaultText: "BOTTOM")
+        prepareTextField(textField: topTextField, defaultText: "TOP")
         
         //validating for simulator and disable camera button
         #if targetEnvironment(simulator)
@@ -42,6 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //restarting
         
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -70,28 +77,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
 //actions
-    @IBAction func pickAnImage(_ sender: Any) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        imagePicker.mediaTypes = ["public.image", "public.movie"]                
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
-        
-    }
     
-    
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        
+    func pickPresentAnImage(source: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.mediaTypes = ["public.image", "public.movie"]
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
-        
-        
+    }
+    
+    
+    @IBAction func pickAnImage(_ sender: Any) {
+        pickPresentAnImage(source: .photoLibrary)
+    }
+    
+    
+    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        pickPresentAnImage(source: .camera)
     }
     
     
